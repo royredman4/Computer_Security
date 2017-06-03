@@ -27,7 +27,7 @@ def getGroups(filename):
     temp_Group = Group()
     with open(filename+".txt") as f:
         for line in f:
-            Groups_ary.append(copy.deepcopy(getGroupInfo(line)))
+            Groups_ary.append(getGroupInfo(line))
     return Groups_ary
 
 
