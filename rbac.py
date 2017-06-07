@@ -62,7 +62,7 @@ def getGroupInfo(line):
 '''
 def getGroups(filename):
     Groups_ary = []
-    with open(filename+".txt") as f:
+    with open(filename) as f:
         for line in f:
             Groups_ary.append(getGroupInfo(line))
     return Groups_ary
@@ -169,7 +169,7 @@ def Update_Permissions(group, ACL_directory):
     the file passed through the command line
 '''    
 def getACLs(filename):
-    ACL_file = open(filename + ".txt", "r")
+    ACL_file = open(filename)
     ACL_array = []
     temp_ACL = ACL()
     while True:
@@ -177,9 +177,9 @@ def getACLs(filename):
         if (line == ""):
             break
         mid_index = line.find(":")
-        temp_ACL.location = line[:mid_index]
+        temp_ACL.location = line[:mid_index]  
         while True:
-            line = ACL_file.readline()
+            line = ACL_file.readline().strip(" ") 
             if (line == "\r\n" or line == "\n" or line == ""):
                 break
             temp_ACL.group_permissions.append(getGroupInfo(line))
@@ -194,7 +194,7 @@ def getACLs(filename):
 def getActions(filename):
     Action_array = []
     temp_Action = Action()
-    with open(filename+".txt") as f:
+    with open(filename) as f:
         for line in f:
             temp_list = line.rstrip("\n").rstrip("\r").split(" ")
             temp_Action.name = temp_list[0]
